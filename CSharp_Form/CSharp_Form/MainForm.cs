@@ -9,6 +9,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace CSharp_Form
 {
@@ -16,9 +18,11 @@ namespace CSharp_Form
     {
         private const bool ClosedConnection = false;
         private HttpClient _httpClient;
+        private Random _random;
 
         public MainForm()
         {
+            _random = new Random();
             InitializeComponent();
         }
 
@@ -81,10 +85,37 @@ namespace CSharp_Form
             }
         }
 
+        private async void btn_Random_Click(object sender, EventArgs e)
+        {
+            using (StringContent stringContent = new StringContent
+                (JsonSerializer.Serialize(
+                    new
+                    {
+                        value = _random.Next() % 10
+                    }),
+                    Encoding.UTF8,
+                    "application/json"))
+            {
+                HttpResponseMessage response = await _httpClient.PostAsync("", stringContent);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("POST request failed!", "Failure to setup request",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                MessageBox.Show("POST request succeeded!", "Successfully setup request",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         ~MainForm()
         {
             if (_httpClient != null)
                 _httpClient.Dispose();
         }
+
+
     }
 }

@@ -38,6 +38,7 @@
             this.btn_Request = new System.Windows.Forms.Button();
             this.btn_Disconnect = new System.Windows.Forms.Button();
             this.tB_ConnectionState = new System.Windows.Forms.TextBox();
+            this.btn_Random = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Connect
@@ -103,7 +104,7 @@
             // 
             // btn_Request
             // 
-            this.btn_Request.Location = new System.Drawing.Point(15, 212);
+            this.btn_Request.Location = new System.Drawing.Point(12, 143);
             this.btn_Request.Name = "btn_Request";
             this.btn_Request.Size = new System.Drawing.Size(230, 23);
             this.btn_Request.TabIndex = 7;
@@ -133,11 +134,22 @@
             this.tB_ConnectionState.Text = "NOT CONNECTED";
             this.tB_ConnectionState.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // btn_Random
+            // 
+            this.btn_Random.Location = new System.Drawing.Point(12, 172);
+            this.btn_Random.Name = "btn_Random";
+            this.btn_Random.Size = new System.Drawing.Size(230, 23);
+            this.btn_Random.TabIndex = 10;
+            this.btn_Random.Text = "Send Random Value";
+            this.btn_Random.UseVisualStyleBackColor = true;
+            this.btn_Random.Click += new System.EventHandler(this.btn_Random_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(632, 416);
+            this.Controls.Add(this.btn_Random);
             this.Controls.Add(this.tB_ConnectionState);
             this.Controls.Add(this.btn_Disconnect);
             this.Controls.Add(this.btn_Request);
@@ -167,6 +179,7 @@
         private System.Windows.Forms.Button btn_Request;
         private System.Windows.Forms.Button btn_Disconnect;
         private System.Windows.Forms.TextBox tB_ConnectionState;
+        private System.Windows.Forms.Button btn_Random;
     }
 }
 
